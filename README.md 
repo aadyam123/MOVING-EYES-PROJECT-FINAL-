@@ -1,2 +1,44 @@
 # MOVING-EYES-PROJECT-FINAL-
 Aadya Manchanda
+PVector leftEye;
+PVector rightEye;
+
+void setup() {
+  size(400, 200);
+  leftEye = new PVector(width*.25, height*.5);
+  rightEye = new PVector(width*.75, height*.5);
+}
+
+void draw() {
+  background(200);
+
+  PVector mouseVector = new PVector(mouseX, mouseY);
+
+  PVector leftPupil = leftEye.copy().add(mouseVector.copy().sub(leftEye).setMag(10));
+  PVector rightPupil = rightEye.copy().add(mouseVector.copy().sub(rightEye).setMag(10));
+
+  PVector leftIris = leftEye.copy().add(mouseVector.copy().sub(leftEye).setMag(10));
+  PVector rightIris = rightEye.copy().add(mouseVector.copy().sub(rightEye).setMag(10));
+
+  fill(255);
+  ellipse(leftEye.x, leftEye.y, 60, 60);
+  ellipse(rightEye.x, rightEye.y, 60, 60);
+
+  fill(75, 36, 28);
+  ellipse(leftPupil.x, leftPupil.y, 30, 30);
+  ellipse(rightPupil.x, rightPupil.y, 30, 30);
+
+  fill(0);
+  ellipse(leftIris.x, leftPupil.y, 10, 10);
+  ellipse(rightIris.x, rightPupil.y, 10, 10);
+
+  if (mouseY < height/2+50 && mouseY > height/2 && mouseX < width/2+40 && mouseX > width/2-40)
+  {
+    fill(0,0,250);
+    arc(120, 120, 50, 60, 0.1, 2.1);
+    fill(0,0,250);
+    arc(280, 120, 50, 60, 7.2, 9.2);
+    fill(200,0,0);
+  }
+  triangle(width/2,height/2,width/2-40,height/2+50,width/2+40,height/2+50);
+}
